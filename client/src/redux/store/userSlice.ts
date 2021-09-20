@@ -1,5 +1,6 @@
 import {  createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios";
+import {axiosInstance} from "../../config";
 import { RootState } from "../Store"
 
 export const register = createAsyncThunk (
@@ -21,9 +22,11 @@ export const login = createAsyncThunk (
   "users/login",
   async (user: any, thunkAPI) => {
     try {
-      const response: any = 
-        await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/login`, user)
+      // const response: any = 
+      //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/login`, user)
       
+      const response: any = 
+        await axiosInstance.post(`/api/users/login`, user)
       console.log(response.data);
       localStorage.setItem("currentUser", JSON.stringify(response.data))
       window.location.href = "/";
