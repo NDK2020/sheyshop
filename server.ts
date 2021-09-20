@@ -11,6 +11,7 @@ var productRoute = require("./src/routes/product.route");
 var userRoute = require("./src/routes/user.route");
 var ordersRoute = require("./src/routes/orders.router");
 const path = require("path");
+var favicon = require("serve-favicon");
 
 loadEnv();
 
@@ -43,7 +44,7 @@ app.get("/", (req: any, res: any) => {
     "<h1> This message is from back end </h1>"
   )
 })
-
+app.use(favicon(path.join(__dirname, 'client/public', 'favicon.ico')));
 app.use('/api/products/', productRoute)
 app.use('/api/users/', userRoute)
 app.use('/api/orders/', ordersRoute);
