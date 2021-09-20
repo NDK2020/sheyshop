@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
-app.get("/", (req: any, res: any) => {
+app.get("/api/", (req: any, res: any) => {
   res.send("this is from backend")
 })
 
