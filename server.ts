@@ -27,6 +27,7 @@ app.use(
   })
 );
 console.log("client url", process.env.CLIENT_URL);
+console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === "production") {
   console.log("PRODUCTION MODE ACTIVE");
