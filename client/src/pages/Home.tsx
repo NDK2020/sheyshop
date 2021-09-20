@@ -29,7 +29,7 @@ function Home() {
           <Loader />
           ) : status == "failed" ? (
             <Error error={"Something went wrong"}/>
-          ) : allProducts.length && (allProducts.map((product:any) => {
+          ) : allProducts.length > 0 && (allProducts.map((product:any) => {
             return ( 
               <div 
               className="col-md-3 m-2 p-2 text-left 
