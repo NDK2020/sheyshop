@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -20,7 +19,7 @@ function App() {
 
       <BrowserRouter>
         <Navbar />
-        <Route path='/' component={Home} exact />
+        <Route path='/' component={Home}/>
         <Route path='/product/:id' component={ProductPage} />
         <Route path='/cart' component={CartPage} />
         <Route path='/register' component={RegisterPage} />

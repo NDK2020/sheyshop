@@ -30,7 +30,7 @@ function EditProduct() {
   // }, []);
   
   useEffect(() => {
-    if (Object.keys(product).length && product._id == productId) {
+    if (Object.keys(product).length > 0 && product._id == productId) {
         setName(product.name);
         setPrice(product.price);
         setCountInStock(product.countInStock);

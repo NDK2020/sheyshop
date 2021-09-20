@@ -43,7 +43,7 @@ function OrdersList() {
 
         <tbody>
           {
-            Object.keys(orders).length && orders.map((order: any) => {
+            Object.keys(orders).length > 0 && orders.map((order: any) => {
               return (
                 <tr  id = {order._id}
                   onClick={onClickToOrderInfoPage}>

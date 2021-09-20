@@ -37,7 +37,7 @@ function ReviewProduct (props: any) {
 
       <h2 className="mt-3">Latest Reviews</h2>
       {
-        Object.keys(product).length && product.reviews.map((review: any) => {
+        Object.keys(product).length > 0 && product.reviews.map((review: any) => {
           return (
             <div>
               <Rating

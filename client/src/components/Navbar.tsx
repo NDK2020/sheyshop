@@ -38,7 +38,7 @@ function Navbar() {
         <ul className="navbar-nav pull-right">
           
           {
-            Object.keys(currentUser).length 
+            Object.keys(currentUser).length > 0
               ? (
                 <NavbarDropdown currentUser={currentUser}/> 
               ) : (

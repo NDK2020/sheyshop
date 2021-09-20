@@ -37,9 +37,9 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
-app.get("/api/", (req: any, res: any) => {
-  res.send("this is from backend")
-})
+// app.get("/api/", (req: any, res: any) => {
+//   res.send("this is from backend")
+// })
 
 app.use('/api/products/', productRoute)
 app.use('/api/users/', userRoute)

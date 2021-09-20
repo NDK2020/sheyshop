@@ -12,7 +12,7 @@ function OrderPage() {
   const {orders, status} = useAppSelector(state => state.orderData);
 
   useEffect(() => {
-    if (Object.keys(currentUser).length) {
+    if (Object.keys(currentUser).length > 0) {
       dispatch(getOrdersByUserId(currentUser._id));  
     } else {
       window.location.href = "/login";
