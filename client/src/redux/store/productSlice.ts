@@ -24,7 +24,8 @@ export const getAllProducts = createAsyncThunk (
   // }
   async (_, thunkAPI) => {
     try {
-      const response:any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/products/getallproducts`)
+      //const response:any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/products/getallproducts`)
+      const response:any = await axios.get(`/api/products/getallproducts`)
       return response.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue({ error: error.message});
