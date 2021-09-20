@@ -1,4 +1,4 @@
-export const loadEnv = (relativePath:string = "/../../.env") => {
+const loadEnvv = (relativePath:string = "/../../.env") => {
   if (process.env.NODE_ENV === "development") {
     require("dotenv").config();
   } else {
@@ -15,3 +15,5 @@ export const loadEnv = (relativePath:string = "/../../.env") => {
     }  
   }
 };
+
+module.exports = loadEnvv;

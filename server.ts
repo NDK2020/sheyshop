@@ -1,7 +1,10 @@
 const express = require("express");
-import {loadEnv} from "./src/common/envLoader"
-import bodyParser from "body-parser"
-import cors from "cors";
+//import {loadEnv} from "./src/common/envLoader"
+//import bodyParser from "body-parser"
+//import cors from "cors";
+var loadEnv = require("./src/common/envLoader")
+const bodyParser = require("body-parser");
+const cors = require("cors");
 var dbConnection = require('./src/common/db');
 //import router as productRoute from "./routes/product.route";
 var productRoute = require("./src/routes/product.route");

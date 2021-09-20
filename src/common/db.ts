@@ -1,6 +1,5 @@
 import mongoose, {ConnectOptions} from "mongoose";
 
-
 var mongodbURL:string ="mongodb+srv://ndkhoa2020:qweasd@cluster0.3chvi.mongodb.net/mern-ecommerce"
 
 mongoose.connect(mongodbURL!, {
