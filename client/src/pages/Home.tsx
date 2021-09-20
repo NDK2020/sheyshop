@@ -11,7 +11,6 @@ function Home() {
   const dispatch = useAppDispatch();
   const productData = useAppSelector(state => state.productData);
   const {allProducts, status} = productData
-  console.log(allProducts);
 
 // test
   useEffect(() => {
