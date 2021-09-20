@@ -3,7 +3,7 @@ import {useAppDispatch} from "../redux/hook";
 import {filterProducts} from "../redux/store/productSlice";
 
 
-function Filter(props: any) {
+function Filter() {
   const dispatch = useAppDispatch();
 
   const [searchKey, setSearchKey] = useState<string>("");
