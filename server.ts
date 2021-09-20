@@ -23,11 +23,10 @@ app.use(cors());
 app.use(
   cors({
     credentials: true,
-    origin: process.env.CLIENT_URL,
+    origin: [process.env.CLIENT_URL, "https://practice-sheyshop.herokuapp.com"],
   })
 );
 console.log("client url", process.env.CLIENT_URL);
-console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === "production") {
   console.log("PRODUCTION MODE ACTIVE");
