@@ -42,9 +42,9 @@ app.use('/api/orders/', ordersRoute);
 
   
 
-// const port = process.env.PORT || 8000;
+const port = process.env.PORT || process.env.SERVER_PORT;
 // console.log(port);
 
-app.listen(process.env.SERVER_PORT, function() {
+app.listen(port, function() {
     console.log(`Server run on port ${process.env.SERVER_PORT}`)
 })
