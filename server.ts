@@ -21,13 +21,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.text());
 
 app.use(cors());
-app.use(
-  cors({
-    credentials: true,
-    origin: [process.env.CLIENT_URL, "https://practice-sheyshop.herokuapp.com"],
-  })
-);
-console.log("client url", process.env.CLIENT_URL);
+// app.use( cors({
+//     credentials: true,
+//     origin: [process.env.CLIENT_URL, "https://practice-sheyshop.herokuapp.com"],
+//   })
+// );
+// console.log("client url", process.env.CLIENT_URL);
 
 if (process.env.NODE_ENV === "production") {
   console.log("PRODUCTION MODE ACTIVE");
