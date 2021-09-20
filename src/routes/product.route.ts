@@ -1,11 +1,11 @@
-import express from "express"
+const express = require("express");
 import mongoose from "mongoose";
 import productModel from "../models/product.model";
 const Product = require("../models/product.model")
 
 
 const router = express.Router();
-router.get(`/getallproducts`, (req,res) => {
+router.get(`/getallproducts`, (req: any,res: any) => {
   // can use Product.find() too
   //console.log("Product.find");
   productModel.find({},  (err, docs):any => {
@@ -20,7 +20,7 @@ router.get(`/getallproducts`, (req,res) => {
   })  
 });
 
-router.post("/getproductbyid", (req, res) => {
+router.post("/getproductbyid", (req: any, res: any) => {
   console.log("getbyid :", req.body.productId);
   productModel.find({_id: req.body.productId}, (err, docs) => {
     if (!err) {
@@ -31,7 +31,7 @@ router.post("/getproductbyid", (req, res) => {
   })
 })
 
-router.post("/addproduct", (req, res) => {
+router.post("/addproduct", (req: any, res: any) => {
 
   // productModel.find({_id: req.body.productId}, (err, docs) => {
   //   if (!err) {
@@ -63,7 +63,7 @@ router.post("/addproduct", (req, res) => {
   });
 })
 
-router.post("/addproductreview", async (req, res) => {
+router.post("/addproductreview", async (req: any, res:any) => {
   const {review, productid, currentUser} = req.body;
   const product = await productModel.findById({_id: productid});
 
@@ -91,7 +91,7 @@ router.post("/addproductreview", async (req, res) => {
   })
 });
 
-router.post("/deleteproduct", (req, res) => {
+router.post("/deleteproduct", (req: any, res: any) => {
   console.log(req.body.productid);
 
   productModel.findByIdAndRemove(req.body.productid, {}, err => {
@@ -104,7 +104,7 @@ router.post("/deleteproduct", (req, res) => {
   });
 });
 
-router.post("/editproduct", (req, res) => {
+router.post("/editproduct", (req: any, res: any) => {
   const product = req.body;
   productModel.findByIdAndUpdate(product._id, {
     name         : product.name,

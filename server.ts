@@ -1,4 +1,4 @@
-import express from "express";
+const express = require("express");
 import {loadEnv} from "./src/common/envLoader"
 import bodyParser from "body-parser"
 import cors from "cors";
@@ -27,12 +27,12 @@ console.log("client url", process.env.CLIENT_URL);
 
 if (process.env.NODE_ENV === "production") {
   app.use('/', express.static("/client/build"));
-  app.get('*', (req, res) => {
+  app.get('*', (req: any, res: any) => {
     res.sendFile(path.resolve(__dirname, 'client','build','index.html'));
   })
 }
 
-app.get("/", (req, res) => {
+app.get("/", (req: any, res: any) => {
   res.send("this is from backend")
 })
 

@@ -1,10 +1,10 @@
-import express from "express";
+const express = require("express");
 import userModel from "../models/user.model"
 import mongoose from "mongoose";
 
 const router = express.Router(); 
 
-router.post("/register", (req, res) => {
+router.post("/register", (req: any, res: any) => {
   userModel.find({email: req.body.email}, async (err, docs) => {
     if (docs.length > 0) {
       return res.status(400).json({ message: "User already registered"});
@@ -26,8 +26,8 @@ router.post("/register", (req, res) => {
   })
 });
 
-router.post("/login", (req, res) => {
-  userModel.find({email: req.body.email, passowrd: req.body.password}, (err, docs) => {
+router.post("/login", (req: any, res: any) => {
+  userModel.find({email: req.body.email, passowrd: req.body.password}, (err: any, docs) => {
     if (docs.length > 0) {
       const user = {
         _id: docs[0]._id,
@@ -41,7 +41,7 @@ router.post("/login", (req, res) => {
   })
 });
 
-router.post("/update", (req, res) => {
+router.post("/update", (req: any, res: any) => {
   console.log(req.body);
 
   userModel.findByIdAndUpdate(req.body._id, {
@@ -57,7 +57,7 @@ router.post("/update", (req, res) => {
   })
 });
 
-router.post("/deleteuser", (req, res) => {
+router.post("/deleteuser", (req: any, res: any) => {
   console.log(req.body.userid);
 
   userModel.findByIdAndRemove(req.body.userid, {}, err => {
@@ -70,7 +70,7 @@ router.post("/deleteuser", (req, res) => {
   });
 });
 
-router.get("/getallusers", (req, res) => {
+router.get("/getallusers", (req: any, res: any) => {
   userModel.find({}, (err, docs) => {
     if (err) {
       return res.status(400).json({message: "something went wrong"});

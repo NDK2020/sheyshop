@@ -1,11 +1,11 @@
-import express from "express";
+const express = require("express");
 import mongoose from "mongoose";
 import {v4 as uuidv4}from "uuid";
 import orderModel from "../models/order.model";
 const stripe = require("stripe")("sk_test_51JZcxfDQPjJJlnSb0CTQwFXRlWrFa62VGVHHw32UdIr3zTM8BOAZlizNCwxfzpDsggNMs87MuDkJ4HVMhQ0eJNQ4008jZ6LhE2");
 const router = express.Router(); 
 
-router.post("/placeorders", async (req, res) => {
+router.post("/placeorders", async (req: any, res: any) => {
   const {token, subTotal, currentUser, orderItems} = req.body;  
   const customer = await stripe.customers.create({
     email:  token.email,
@@ -59,7 +59,7 @@ router.post("/placeorders", async (req, res) => {
   
 });
 
-router.post("/getordersbyuserid", (req, res) => {
+router.post("/getordersbyuserid", (req: any, res: any) => {
 
   orderModel.find({userid: req.body.userid}, (err, docs) => {
     if (err ) {
@@ -71,7 +71,7 @@ router.post("/getordersbyuserid", (req, res) => {
 
 });
 
-router.post("/getorderbyid", (req, res) => {
+router.post("/getorderbyid", (req: any, res: any) => {
 
   orderModel.find({_id: req.body.orderid}, (err, docs) => {
     if (err ) {
@@ -83,7 +83,7 @@ router.post("/getorderbyid", (req, res) => {
 
 });
 
-router.get("/getallorders", (req, res) => {
+router.get("/getallorders", (req: any, res: any) => {
   orderModel.find({}, (err, docs) => {
     if (err ) {
       return res.status(400).json({message: "something went wrong"});
