@@ -37,9 +37,12 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
-// app.get("/api/", (req: any, res: any) => {
-//   res.send("this is from backend")
-// })
+//app.use(express.static('client/public'))
+app.get("/", (req: any, res: any) => {
+  res.send(
+    "<h1> This message is from back end </h1>"
+  )
+})
 
 app.use('/api/products/', productRoute)
 app.use('/api/users/', userRoute)
