@@ -42,7 +42,7 @@ app.use('/api/orders/', ordersRoute);
 
   
 
-const port = process.env.PORT || process.env.SERVER_PORT;
+const port = process.env.PORT || 8000;
 // console.log(port);
 
 app.listen(port, function() {
