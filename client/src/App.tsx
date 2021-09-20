@@ -14,6 +14,7 @@ import ProfilePage from './pages/ProfilePage';
 import AdminPage from './pages/AdminPage';
 
 function App() {
+
   return (
     <div className="App">
 

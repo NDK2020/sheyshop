@@ -1,12 +1,12 @@
 import express from "express";
-import {loadEnv} from "./common/envLoader"
+import {loadEnv} from "./src/common/envLoader"
 import bodyParser from "body-parser"
 import cors from "cors";
-var dbConnection = require('./common/db');
+var dbConnection = require('./src/common/db');
 //import router as productRoute from "./routes/product.route";
-var productRoute = require("./routes/product.route");
-var userRoute = require("./routes/user.route");
-var ordersRoute = require("./routes/orders.router");
+var productRoute = require("./src/routes/product.route");
+var userRoute = require("./src/routes/user.route");
+var ordersRoute = require("./src/routes/orders.router");
 const path = require("path");
 
 loadEnv();
@@ -25,6 +25,13 @@ app.use(
 );
 console.log("client url", process.env.CLIENT_URL);
 
+if (process.env.NODE_ENV === "production") {
+  app.use('/', express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/', 'index.html'));
+  })
+}
+
 app.get("/", (req, res) => {
   res.send("this is from backend")
 })
@@ -33,13 +40,7 @@ app.use('/api/products/', productRoute)
 app.use('/api/users/', userRoute)
 app.use('/api/orders/', ordersRoute);
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use('/', express.static('/../../client/build'));
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname), 'client/build/index.html'));
-//   })
   
-// }
 
 // const port = process.env.PORT || 8000;
 // console.log(port);
