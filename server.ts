@@ -29,7 +29,9 @@ app.use(
 console.log("client url", process.env.CLIENT_URL);
 
 if (process.env.NODE_ENV === "production") {
-  app.use('/', express.static("/client/build"));
+  console.log("PRODUCTION MODE ACTIVE");
+  //app.use('/', express.static("/client/build"));
+  app.use(express.static("client/build"));
   app.get('*', (req: any, res: any) => {
     res.sendFile(path.resolve(__dirname, 'client','build','index.html'));
   })
