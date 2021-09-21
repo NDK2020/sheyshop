@@ -29,13 +29,7 @@ export const filterProducts = createAsyncThunk (
       const response: any = await axiosInstance.get(`/api/products/getallproducts`)
       var filteredProducts   = response.data;
 
-      if (response.data.length) {
-        if (searchKey) {
-          filteredProducts = response.data.filter( (product:any) => {
-            return product.name.toLowerCase().includes(searchKey);
-          }
-                                                 )  
-        }
+      if (response.data.length > 0) {
 
         if (sortKey !== "popular") {
           if (sortKey == "hightolow") {
@@ -53,6 +47,12 @@ export const filterProducts = createAsyncThunk (
           filteredProducts = response.data.filter((product: any) => {
             return product.category.toLowerCase().includes(category);
           })
+        }
+        
+        if (searchKey != "") {
+          filteredProducts = response.data.filter( (product:any) => {
+            return product.name.toLowerCase().includes(searchKey);
+          })  
         }
 
         return filteredProducts;
