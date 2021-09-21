@@ -26,7 +26,7 @@ function OrderInfoPage() {
       {status == "complete" && (
         <div className="row justify-content-center">
 
-          <div className="col-md-5 card">
+          <div className="col-md-5 card mt-3 mx-2">
 
             <h2>Items In Your Order</h2>  
             <hr />
@@ -37,7 +37,7 @@ function OrderInfoPage() {
                     <h1>{item.name}</h1>
                     <h1>Quantity: <b>{item.name}</b></h1>
                     <h1>
-                      Price: {item.quantity} * {item.price} = {item.price*item.quantity}
+                      Price: {item.quantity} pcs * {item.price} VND = {item.price*item.quantity} VND
                     </h1>
                     <hr />
                   </div>
@@ -46,15 +46,15 @@ function OrderInfoPage() {
 
           </div>  
 
-          <div className="col-md-5 card text-end">
+          <div className="col-md-5 card text-end mt-3 mx-2">
 
             <h2>Order Details</h2>
             <hr />
             
-            <h3>Order Id: {order._id}</h3>
-            <h3>Order Amount: {order.orderAmount}</h3>
-            <h3>Date of Order: {order.createdAt.substring(0, 10)}</h3>
-            <h3>Transaction ID: {order.transactionId}</h3>
+            <h3><b>Order Id:</b> {order._id}</h3>
+            <h3><b>Order Amount:</b> {order.orderAmount}</h3>
+            <h3><b>Date of Order:</b> {order.createdAt.substring(0, 10)}</h3>
+            <h3><b>Transaction ID:</b> {order.transactionId}</h3>
             
             {
               order.isDelivered 
