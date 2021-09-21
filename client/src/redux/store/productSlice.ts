@@ -3,20 +3,6 @@ import { RootState } from "../Store"
 import axios from "axios"
 import {axiosInstance} from "../../config"
 
-interface iProduct {
-
-  allProducts: Array<any>,
-  status: string | null,
-  addProductStatus: string | null,
-  product?: any 
-}
-
-const initialState: iProduct = {
-  allProducts: [],
-  status: null,
-  product: undefined,
-  addProductStatus: null
-}
 
 export const getAllProducts = createAsyncThunk (
   "products/getallproducts",
@@ -26,8 +12,8 @@ export const getAllProducts = createAsyncThunk (
   // }
   async (_, thunkAPI) => {
     try {
-      //const response:any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/products/getallproducts`)
-      const response:any = await axios.get(`/api/products/getallproducts`)
+      // const response:any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/products/getallproducts`)
+      const response:any = await axiosInstance.get(`/api/products/getallproducts`)
       return response.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue({ error: error.message});
@@ -42,7 +28,8 @@ export const filterProducts = createAsyncThunk (
     const {searchKey, sortKey, category} = props;
 
     try {
-      const response: any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/products/getallproducts`)
+      // const response: any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/products/getallproducts`)
+      const response: any = await axiosInstance.get(`/api/products/getallproducts`)
       var filteredProducts   = response.data;
 
       if (response.data.length) {
@@ -85,7 +72,12 @@ export const addProductReview = createAsyncThunk(
   async (props: any, thunkAPI) => {
     const {review, productid, currentUser} = props;
     try {
-      const response:any = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/products/addproductreview`, {
+      // const response:any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/addproductreview`, {
+      //   review: review,
+      //   productid: productid,
+      //   currentUser: currentUser,
+      // }); 
+      const response:any = await axiosInstance.post(`/api/products/addproductreview`, {
         review: review,
         productid: productid,
         currentUser: currentUser,
@@ -104,7 +96,8 @@ export const addProduct = createAsyncThunk(
   "products/addproduct",
   async (product: any, thunkAPI) => {
     try {
-      const response:any = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/products/addproduct`, product); 
+      // const response:any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/addproduct`, product); 
+      const response:any = await axiosInstance.post(`/api/products/addproduct`, product); 
       console.log(response.data);
       //alert(`Add new product successfully`);
       //window.location.reload();
@@ -119,8 +112,10 @@ export const deleteProduct = createAsyncThunk (
   "users/deleteproduct",
   async (productid: any, thunkAPI) => {
     try {
+      // const response:any = 
+      //   await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/deleteproduct`,{productid: productid}) 
       const response:any = 
-        await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/products/deleteproduct`,{productid: productid}) 
+        await axiosInstance.post(`/api/products/deleteproduct`,{productid: productid}) 
       console.log(response.data);
       alert(`Product deleted successfully`);
       window.location.reload();
@@ -131,6 +126,20 @@ export const deleteProduct = createAsyncThunk (
   }
 )
 
+interface iProduct {
+
+  allProducts: Array<any>,
+  status: string | null,
+  addProductStatus: string | null,
+  product?: any 
+}
+
+const initialState: iProduct = {
+  allProducts: [],
+  status: null,
+  product: undefined,
+  addProductStatus: null
+}
 
 export const productSlice = createSlice({
   name: "productSlice",

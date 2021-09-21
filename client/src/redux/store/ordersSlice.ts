@@ -1,14 +1,17 @@
 import { createAction, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../Store"
 import axios from "axios"
+import {axiosInstance} from "../../config";
 
 export const placeOrders = createAsyncThunk (
   "orders/placeorders",
   async (orders: any, thunkAPI) => {
 
     try {
+      // const response: any 
+      // = await axiosInstance.post(`${ process.env.REACT_APP_SERVER_URL }/api/orders/placeorders`, orders);
       const response: any 
-      = await axios.post(`${ process.env.REACT_APP_SERVER_URL }/api/orders/placeorders`, orders);
+      = await axiosInstance.post(`/api/orders/placeorders`, orders);
       return response.data;
     } catch (err: any) {
       return thunkAPI.rejectWithValue(err.response.data.message);
@@ -20,7 +23,8 @@ export const getOrdersByUserId = createAsyncThunk (
   "orders/getOrdersByUserId",
   async (userid: any, thunkAPI) => {
     try {
-      const response: any = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/orders/getordersbyuserid`, {userid: userid});
+      // const response: any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/orders/getordersbyuserid`, {userid: userid});
+      const response: any = await axiosInstance.post(`/api/orders/getordersbyuserid`, {userid: userid});
       console.log(response.data);
       return response.data;
     } catch (err: any) {
@@ -33,7 +37,8 @@ export const getOrderById = createAsyncThunk (
   "orders/getOrderById",
   async (orderid: any, thunkAPI) => {
     try {
-      const response: any = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/orders/getorderbyid`, {orderid: orderid});
+      // const response: any = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/orders/getorderbyid`, {orderid: orderid});
+      const response: any = await axiosInstance.post(`/api/orders/getorderbyid`, {orderid: orderid});
       console.log(response.data);
       return response.data;
     } catch (err: any) {
@@ -47,7 +52,8 @@ export const getAllOrders = createAsyncThunk (
   "orders/getallorders",
   async (_, thunkAPI) => {
     try {
-      const response: any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/orders/getallorders` );
+      // const response: any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/orders/getallorders` );
+      const response: any = await axiosInstance.get(`/api/orders/getallorders` );
       console.log(response.data);
       return response.data;
     } catch (err: any) {

@@ -1,6 +1,7 @@
 import { createAction, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../Store"
 import axios from "axios"
+import {axiosInstance} from "../../config"
 
 type ProductId = {
   status: any,
@@ -19,7 +20,10 @@ export const getProductById = createAsyncThunk (
   async (productId: string, thunkAPI) => {
     try {
       
-      const response: any = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/products/getproductbyid`,{
+      // const response: any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/getproductbyid`,{
+      //   productId: productId,
+      // })
+      const response: any = await axiosInstance.post(`/api/products/getproductbyid`,{
         productId: productId,
       })
       return response.data;
@@ -33,7 +37,8 @@ export const editProduct = createAsyncThunk(
   "products/editproduct",
   async (product: any, thunkAPI) => {
     try {
-      const response:any = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/products/editproduct`, product); 
+      // const response:any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/editproduct`, product); 
+      const response:any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/editproduct`, product); 
       console.log(response.data);
       //alert(`Add new product successfully`);
       window.location.href = "/admin/productslist";

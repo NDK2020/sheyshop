@@ -21,13 +21,27 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.text());
 
 app.use(cors());
-// app.use( cors({
-//     credentials: true,
-//     origin: [process.env.CLIENT_URL, "https://practice-sheyshop.herokuapp.com"],
-//   })
-// );
-// console.log("client url", process.env.CLIENT_URL);
+app.use( cors({
+    credentials: true,
+    origin: [process.env.CLIENT_URL, "https://practice-sheyshop.herokuapp.com"],
+    //origin: process.env.CLIENT_URL
+  })
+);
+console.log("client url", process.env.CLIENT_URL);
 
+
+//app.use(express.static('client/public'))
+app.get("/", (req: any, res: any) => {
+  res.send(
+    "<h1> This message is from back end </h1>"
+  )
+})
+//app.use(favicon(path.join(__dirname, './client/build', 'favicon.ico')));
+app.use('/api/products/', productRoute)
+app.use('/api/users/', userRoute)
+app.use('/api/orders/', ordersRoute);
+
+  
 if (process.env.NODE_ENV === "production") {
   console.log("PRODUCTION MODE ACTIVE");
   //app.use('/', express.static("/client/build"));
@@ -36,19 +50,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, './client/build','index.html'));
   })
 }
-
-//app.use(express.static('client/public'))
-app.get("/", (req: any, res: any) => {
-  res.send(
-    "<h1> This message is from back end </h1>"
-  )
-})
-app.use(favicon(path.join(__dirname, './client/build', 'favicon.ico')));
-app.use('/api/products/', productRoute)
-app.use('/api/users/', userRoute)
-app.use('/api/orders/', ordersRoute);
-
-  
 
 const port = process.env.PORT || 8000;
 app.set("port", port);

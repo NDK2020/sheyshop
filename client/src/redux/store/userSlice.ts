@@ -7,8 +7,10 @@ export const register = createAsyncThunk (
   "users/register",
   async (user: any, thunkAPI) => {
     try {
+      // const response:any = 
+      //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/register`, user) 
       const response:any = 
-        await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/register`, user) 
+        await axiosInstance.post(`/api/users/register`, user) 
       return response.data;
     } catch (err: any) {
       //console.log(err.response);
@@ -41,8 +43,10 @@ export const updateUser = createAsyncThunk (
   "users/update",
   async (user: any, thunkAPI) => {
     try {
+      // const response:any = 
+      //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/update`, user) 
       const response:any = 
-        await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/update`, user) 
+        await axiosInstance.post(`/api/users/update`, user) 
       console.log(response.data);
       return response.data;
     } catch (err: any) {
@@ -57,8 +61,10 @@ export const getAllUsers = createAsyncThunk (
   "users/getallusers",
   async (_, thunkAPI) => {
     try {
+      // const response:any = 
+      //   await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/users/getallusers`) 
       const response:any = 
-        await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/users/getallusers`) 
+        await axiosInstance.get(`/api/users/getallusers`) 
       console.log(response.data);
       return response.data;
     } catch (err: any) {
@@ -71,8 +77,10 @@ export const deleteUser = createAsyncThunk (
   "users/deleteuser",
   async (userid: any, thunkAPI) => {
     try {
+      // const response:any = 
+      //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/deleteuser`,{userid: userid}) 
       const response:any = 
-        await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/deleteuser`,{userid: userid}) 
+        await axiosInstance.post(`/api/users/deleteuser`,{userid: userid}) 
       console.log(response.data);
       alert(`User deleted successfully`);
       window.location.reload();
