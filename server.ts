@@ -31,11 +31,11 @@ console.log("client url", process.env.CLIENT_URL);
 
 
 //app.use(express.static('client/public'))
-app.get("/", (req: any, res: any) => {
-  res.send(
-    "<h1> This message is from back end </h1>"
-  )
-})
+// app.get("/", (req: any, res: any) => {
+//   res.send(
+//     "<h1> This message is from back end </h1>"
+//   )
+// })
 //app.use(favicon(path.join(__dirname, './client/build', 'favicon.ico')));
 app.use('/api/products/', productRoute)
 app.use('/api/users/', userRoute)
