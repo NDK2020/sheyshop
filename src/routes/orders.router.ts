@@ -13,8 +13,8 @@ router.post("/placeorders", async (req: any, res: any) => {
   }) 
 
   const payment = await stripe.charges.create({
-    amount: subTotal * 100,
-    currency: "inr",
+    amount: subTotal,
+    currency: "VND",
     customer: customer.id,
     receipt_email: token.email
   }, {

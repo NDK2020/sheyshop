@@ -1,14 +1,11 @@
 import {  createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios";
-import {axiosInstance} from "../../config";
+import {axiosInstance} from "../../common/config";
 import { RootState } from "../Store"
 
 export const register = createAsyncThunk (
   "users/register",
   async (user: any, thunkAPI) => {
     try {
-      // const response:any = 
-      //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/register`, user) 
       const response:any = 
         await axiosInstance.post(`/api/users/register`, user) 
       return response.data;
@@ -24,8 +21,6 @@ export const login = createAsyncThunk (
   "users/login",
   async (user: any, thunkAPI) => {
     try {
-      // const response: any = 
-      //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/login`, user)
       
       const response: any = 
         await axiosInstance.post(`/api/users/login`, user)
@@ -43,14 +38,11 @@ export const updateUser = createAsyncThunk (
   "users/update",
   async (user: any, thunkAPI) => {
     try {
-      // const response:any = 
-      //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/update`, user) 
       const response:any = 
         await axiosInstance.post(`/api/users/update`, user) 
       console.log(response.data);
       return response.data;
     } catch (err: any) {
-      //console.log(err.response);
       return thunkAPI.rejectWithValue(err.response.data.message); 
     }
 
@@ -61,8 +53,6 @@ export const getAllUsers = createAsyncThunk (
   "users/getallusers",
   async (_, thunkAPI) => {
     try {
-      // const response:any = 
-      //   await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/users/getallusers`) 
       const response:any = 
         await axiosInstance.get(`/api/users/getallusers`) 
       console.log(response.data);
@@ -77,8 +67,6 @@ export const deleteUser = createAsyncThunk (
   "users/deleteuser",
   async (userid: any, thunkAPI) => {
     try {
-      // const response:any = 
-      //   await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/users/deleteuser`,{userid: userid}) 
       const response:any = 
         await axiosInstance.post(`/api/users/deleteuser`,{userid: userid}) 
       console.log(response.data);
@@ -116,7 +104,7 @@ export const userSlice = createSlice ({
   reducers: {
     logout: (state) => {
       localStorage.removeItem("currentUser");
-      //localStorage.removeItem("cartItems");
+      localStorage.removeItem("cartItems");
       window.location.href="/login";
       state.user = null;
     }
@@ -127,7 +115,6 @@ export const userSlice = createSlice ({
     },  
     [register.fulfilled.type]: (state, action) => {
       state.status = "complete";
-      //state.user  = action.payload;
       state.error = null;
     },
     [register.rejected.type]: (state, action) => {

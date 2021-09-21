@@ -7,6 +7,7 @@ import {useAppDispatch, useAppSelector} from "../redux/hook";
 import {deleteProduct, getAllProducts} from "../redux/store/productSlice";
 import Error from "./Error";
 import Loader from "./Loader";
+import {numberWithCommas} from "../common/UtilityFunctions";
 
 function ProductsList() {
 
@@ -47,7 +48,7 @@ function ProductsList() {
               return (
                 <tr>
                   <td>{product.name}</td>
-                  <td>{product.price}</td>
+                  <td>{numberWithCommas(product.price)}</td>
                   <td>{product.countInStock}</td>
                   <td>{product._id}</td>
                   <td >

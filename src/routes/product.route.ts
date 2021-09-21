@@ -76,9 +76,14 @@ router.post("/addproductreview", async (req: any, res:any) => {
 
   var rating = product!.reviews.reduce((accumulator: number, currentVal: any) => {
     return accumulator + currentVal.rating;  
-  }, 0) / (product!.reviews.length + 1);
+  }, reviewModel.rating) ;
+  // console.log(rating);
+  // console.log(product!.reviews.length);
+  rating /=  (product!.reviews.length + 1);
 
   product!.rating = rating;
+  // console.log(rating);
+  // console.log(reviewModel);
 
   product!.reviews.push(reviewModel)
 

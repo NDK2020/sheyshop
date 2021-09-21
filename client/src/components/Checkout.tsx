@@ -28,9 +28,9 @@ function Checkout(props: any) {
    
       <StripeCheckout 
         token={tokenHandler}
-        amount={amount * 100}
+        amount={amount}
         shippingAddress
-        currency="INR"
+        currency="VND"
         stripeKey={String(process.env.REACT_APP_STRIPE_KEY)}
       > 
         <button className="btn" onClick={onClickValidate}>

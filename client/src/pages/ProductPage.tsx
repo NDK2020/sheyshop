@@ -4,6 +4,8 @@ import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../redux/hook";
 import {addToCart} from "../redux/store/cartSlice";
 import {getProductById} from "../redux/store/productIdSlice";
+import {numberWithCommas} from "../common/UtilityFunctions";
+import { useMediaQuery } from "react-responsive";
 
   interface ParamTypes {
     id: string;
@@ -23,6 +25,14 @@ function ProductPage() {
     dispatch(getProductById(productId));
   },[])
   
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1000px)'
+  })
+  const isBigScreen = useMediaQuery({ query: '(min-width: 3824px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 600px)' })
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
+  
   return (
     <div>
       {
@@ -36,13 +46,34 @@ function ProductPage() {
             <div className="col-md-6">
               <div className="card p-2 m-2 shadow p-3 mb-5 rounded">
                 <h2><b>{product!.name}</b></h2>  
-                <img src={product!.image}
-                  className="img-fluid m-3 bigimg"
-                  style={{
-                    height:'300px'
-                  }}
-                  
-                />
+
+                {
+                  isDesktopOrLaptop && (
+                    <img src={product!.image}
+                      className="img-fluid m-3 desktop-img"
+                      
+                    />
+                  )
+                }
+                
+                {
+                  isBigScreen && (
+                    <img src={product!.image}
+                      className="img-fluid m-3 big-img"
+                      
+                    />
+                  )
+                }
+                
+                {
+                  isTabletOrMobile && (
+                    <img src={product!.image}
+                      className="img-fluid m-3 mobile-img"
+                      
+                    />
+                  )
+                }
+                
                 <p>{product!.description}</p>
               </div>   
             </div>
@@ -50,7 +81,7 @@ function ProductPage() {
             <div className="col-md-6 text-left">
               
               <div className="mx-2 mt-2 mr-0 shadow p-3 mb-5 rounded">
-                <h2>Price: <b>{product!.price}</b></h2>  
+                <h2>Price: <b>{product.price && numberWithCommas(product!.price)} VND</b></h2>  
               <hr />
               
               <h1>Select Quantity</h1>

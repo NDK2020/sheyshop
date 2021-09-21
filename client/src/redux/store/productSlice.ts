@@ -1,7 +1,6 @@
-import { createAction, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
+import {  createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import {axiosInstance} from "../../common/config";
 import { RootState } from "../Store"
-import axios from "axios"
-import {axiosInstance} from "../../config"
 
 
 export const getAllProducts = createAsyncThunk (
@@ -12,7 +11,6 @@ export const getAllProducts = createAsyncThunk (
   // }
   async (_, thunkAPI) => {
     try {
-      // const response:any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/products/getallproducts`)
       const response:any = await axiosInstance.get(`/api/products/getallproducts`)
       return response.data;
     } catch (error: any) {
@@ -28,7 +26,6 @@ export const filterProducts = createAsyncThunk (
     const {searchKey, sortKey, category} = props;
 
     try {
-      // const response: any = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/products/getallproducts`)
       const response: any = await axiosInstance.get(`/api/products/getallproducts`)
       var filteredProducts   = response.data;
 
@@ -72,11 +69,6 @@ export const addProductReview = createAsyncThunk(
   async (props: any, thunkAPI) => {
     const {review, productid, currentUser} = props;
     try {
-      // const response:any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/addproductreview`, {
-      //   review: review,
-      //   productid: productid,
-      //   currentUser: currentUser,
-      // }); 
       const response:any = await axiosInstance.post(`/api/products/addproductreview`, {
         review: review,
         productid: productid,
@@ -96,11 +88,8 @@ export const addProduct = createAsyncThunk(
   "products/addproduct",
   async (product: any, thunkAPI) => {
     try {
-      // const response:any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/addproduct`, product); 
       const response:any = await axiosInstance.post(`/api/products/addproduct`, product); 
       console.log(response.data);
-      //alert(`Add new product successfully`);
-      //window.location.reload();
       return response.data;
     } catch (err: any) {
       return thunkAPI.rejectWithValue(err.response.data.message);
@@ -112,8 +101,6 @@ export const deleteProduct = createAsyncThunk (
   "users/deleteproduct",
   async (productid: any, thunkAPI) => {
     try {
-      // const response:any = 
-      //   await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/deleteproduct`,{productid: productid}) 
       const response:any = 
         await axiosInstance.post(`/api/products/deleteproduct`,{productid: productid}) 
       console.log(response.data);

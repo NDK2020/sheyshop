@@ -36,7 +36,7 @@ function EditProduct() {
         setCountInStock(product.countInStock);
         setImageUrl(product.image);
         setCategory(product.category);
-        setDescription(product.Description);
+        setDescription(product.description);
     } else {
       dispatch(getProductById(productId));
     }

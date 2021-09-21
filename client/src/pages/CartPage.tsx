@@ -3,6 +3,7 @@ import {useAppDispatch, useAppSelector} from "../redux/hook";
 import {FaRegTrashAlt} from "react-icons/fa";
 import {addToCart, deleteItemById} from "../redux/store/cartSlice";
 import Checkout from "../components/Checkout";
+import {numberWithCommas} from "../common/UtilityFunctions";
 
 function CartPage () {
 
@@ -33,7 +34,7 @@ function CartPage () {
                   return (
                     <tr>
                       <td>{item.name}</td>
-                      <td>{item.price}</td>
+                      <td>{numberWithCommas(item.price)} </td>
                       <td>
                         <select 
                           value={item.quantity} 
@@ -50,7 +51,7 @@ function CartPage () {
                           }
                         </select>
                       </td>
-                      <td>{item.quantity * item.price}</td>
+                      <td>{numberWithCommas(item.quantity * item.price)}</td>
                       <td>
                         <FaRegTrashAlt
                           onClick={deleteItemFromCart}
@@ -67,7 +68,7 @@ function CartPage () {
 
           <hr />
           <h2 className="text-center">
-            SubTotal: {subTotal}
+            SubTotal: {numberWithCommas(subTotal)} VND
           </h2>
 
           <hr />
