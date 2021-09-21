@@ -38,7 +38,7 @@ export const editProduct = createAsyncThunk(
   async (product: any, thunkAPI) => {
     try {
       // const response:any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/editproduct`, product); 
-      const response:any = await axiosInstance.post(`${process.env.REACT_APP_SERVER_URL}/api/products/editproduct`, product); 
+      const response:any = await axiosInstance.post(`/api/products/editproduct`, product); 
       console.log(response.data);
       //alert(`Add new product successfully`);
       window.location.href = "/admin/productslist";
